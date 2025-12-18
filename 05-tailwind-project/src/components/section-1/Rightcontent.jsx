@@ -2,7 +2,6 @@ import React from 'react'
 import Rightcard from './Rightcard'
 
 function Rightcontent(props) {
-    console.log(props.users)
     
   return (
     <div id='right' className=' h-full w-2/3 p-2 flex gap-10 flex-nowrap overflow-x-auto ' >
