@@ -3,14 +3,26 @@ import React, { useState } from 'react'
 function App() {
   const [title, setTitle] = useState('')
   const [details, setDetails] = useState('')
+  const [task, setTask] = useState([]);
 
     // this function is apply when button is clicked 
   const submithandler = (e)=>{
     e.preventDefault();
-    console.log(title , details)
+
+    // make a copytask variable to store all previous tasks 
+    const copytask = [...task];
+    copytask.push({title,details})
+    setTask(copytask) 
+    
+    // console.log(title , details) 
     setTitle('')
     setDetails('')
+  }
 
+  const deletenote=(idx)=>{
+     const copyTask = [...task]
+     copyTask.splice(idx,1)
+     setTask(copyTask) 
   }
   return (
     <div className='bg-black lg:flex text-white h-screen '>
@@ -27,6 +39,7 @@ function App() {
           setTitle(e.target.value) 
          }}
          />
+
           {/* details for notes  */}
         <textarea type="text" 
         placeholder='Write details' 
@@ -36,16 +49,32 @@ function App() {
           setDetails(e.target.value)
         }}
         />
-        <button className='bg-white px-5 w-full py-2 font-medium text-black rounded outline-none'>Add Notes</button>
+
+        <button className='bg-white px-5 active:scale-95 w-full py-2 font-medium text-black rounded outline-none'>
+          Add Notes
+          </button>
+
       </form>
       <div className=' lg:w-1/2 lg:border-l-2  p-9'>
       <h1 className='text-2xl font-bold'>Recent Notes</h1>
-            <div className=" flex flex-wrap gap-7 mt-1.5 h-full overflow-auto">
+            <div className=" flex flex-wrap justify-start gap-7 mt-1.5 h-[90%] overflow-auto">
 
-      <div className="bg-white rounded-2xl h-50 w-40"></div>
-      <div className="bg-white rounded-2xl h-50 w-40"></div>
-      <div className="bg-white rounded-2xl h-50 w-40"></div>
-      
+              {task.map(function(elem,idx){
+                return <div key={idx} className=" bg-cover bg-[url('https://static.vecteezy.com/system/resources/thumbnails/068/772/549/small/watercolor-spiral-notepad-free-png.png')] flex flex-col justify-between item-start relative rounded-3xl h-50 px-4 py-7 text-black  w-40">
+                 <div>
+                   <h3 className='leading-snug font-bold'>{elem.title}</h3>
+                  <p className='leading-tight font-semibold text-gray-700 wrap-break-word'>{elem.details}</p>
+                 </div>
+
+                 <button 
+                 onClick={(idx)=>{
+                  deletenote(idx)
+                 }} 
+                 className="w-full cursor-pointer active:scale-95 bg-red-500 py-1 text-xs rounded font-bold">Delete Note</button>
+
+                </div> 
+              })}
+
             </div>
 
      
