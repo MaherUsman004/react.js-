@@ -1,0 +1,11 @@
+import React from 'react'
+
+function Kids() {
+  return (
+    <div>
+      <h1 className='text-2xl font-bold text-center mt-10 underline'>Kids' Collection</h1>
+    </div>
+  )
+}
+
+export default Kids
