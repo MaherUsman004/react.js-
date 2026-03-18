@@ -10,6 +10,7 @@ function Navbar() {
                     <ul className='flex space-x-4'>
                         <li><Link to="/" className='hover:text-blue-400 transition-colors'>Home</Link></li>
                         <li><Link to="/about" className='hover:text-blue-400 transition-colors'>About</Link></li>
+                        <li><Link to="/course" className='hover:text-blue-400 transition-colors'>Courses</Link></li>
                         <li><Link to="/product" className='hover:text-blue-400 transition-colors'>Product</Link></li>
                     </ul>
                 </nav>
